@@ -1,0 +1,116 @@
+html, body, * {
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.tryYourChance {
+    max-width: 800px;
+    margin: auto;
+}
+
+.tryYourChance h1 {
+    text-align: center;
+}
+
+.numbers {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    counter-reset: nth;
+}
+
+.numbers > div {
+    margin: 0.4rem;
+    border: 3px solid black;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+    background-color: lightskyblue;
+    counter-increment: nth;
+    text-align: center;
+}
+.button {
+    width: 100%;
+    margin-top: 16px;
+    text-align: center;
+}
+button:disabled {
+    background-color: lightgray;
+    color: white;
+    border: 1px solid gray;
+}
+button {
+    font-size: 32px;
+    background-color: rgb(10,255,10);
+    border: 1px solid black;
+    padding: 0.2em 1em;
+    border-radius: 32px;
+    font-weight: 400;
+    margin-right: auto;
+}
+
+.choices {
+    margin-top: 2rem;
+}
+
+.numbers div:after {
+    font-size: 32px;
+}
+
+.numbers:not(.choice) div:after {
+    content: counter(nth);
+    color: white;
+}
+
+.numbers:not(.choice) div.selected {
+    background-color: lightsalmon;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.numbers.choice div {
+    background-color: lightgray;
+}
+.numbers.choice div:not(.selected):after {
+    content: "?";
+}
+
+.numbers.choice div.selected {
+    font-size: 32px;
+    background-color: lightpink;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.print {
+    display: none;
+    font-family: monospace;
+}
+
+.print > table  td {
+    font-size: 16px;
+    padding: 0.4em 0.8em;
+    text-align: right;
+}
+.print > table td:first-child {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.print > table td:first-child:after {
+    content: ".";
+}
+
+
+@media print {
+    .tryYourChance {
+        display: none;
+    }
+
+    .print {
+        display: unset;
+    }
+}

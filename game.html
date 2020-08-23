@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sansini Dene</title>
+    <link rel="stylesheet" href="game.css">
+</head>
+<body>
+    <div class="tryYourChance">
+    <h1>SANSINI DENE</h1>
+    <div class="numbers">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="choices"></div>
+    <div class="button"><button disabled>Bitir</button></div>
+    </div>
+    <div class="print">
+        <h1>Sansli Numaralariniz</h1>
+    </div>
+    <script>
+            let final=[];
+        function createActive() {
+            const newChoices=document.createElement("div");
+            newChoices.classList.add("numbers","choice","active");
+            for(let i=0;i < 6;i++) {
+                newChoices.appendChild(document.createElement("div"));
+            }
+            active={
+                selected:[],
+                choices: newChoices
+            };
+            choices.appendChild(newChoices);
+        }
+        document.querySelector("button").addEventListener("click",(e)=>{
+            e.preventDefault();
+            e.cancelBubble=true;
+            choices.innerHTML='';
+            printNumbers();
+            window.print();
+            let table=document.querySelector(".print table");
+            table.parentElement.removeChild(table);
+            final=[];
+            createActive();
+        });
+        function printNumbers() {
+            const area=document.querySelector(".print");
+            const table=document.createElement("table");
+            area.appendChild(table);
+            final.forEach((choices,i)=>{
+                    const rowIndex=document.createElement("td");
+                    rowIndex.innerText=i+1;
+                    const row=document.createElement("tr");
+                    row.appendChild(rowIndex);
+                    table.appendChild(row);
+                [].forEach.call(choices.choices.childNodes,choice=>{
+                    let number=document.createElement("td");
+                    number.innerText=choice.innerText;
+                    row.appendChild(number);
+                });
+            });
+        }
+        const numbers=document.querySelector(".numbers");
+        const choices=document.querySelector(".choices");
+        let active=null;
+        createActive();
+        numbers.addEventListener("click",(e)=>{
+            if (e.target.parentElement !== numbers)
+                return 
+            e.preventDefault();
+            e.cancelBubble=true;
+            let index=active.selected.indexOf(e.target);
+            if (index >= 0) {
+                let original=active.selected[index];
+                active.selected.splice(index,1);
+                original.classList.remove("selected");
+                let tmp= active.choices.childNodes[index];
+                tmp.innerText="";
+                active.choices.removeChild(tmp);
+                tmp.classList.remove("selected");
+                active.choices.appendChild(tmp);
+            } else {
+                active.selected.push(e.target);
+                e.target.classList.add("selected");
+                active.choices.childNodes[active.selected.length-1].classList.add("selected");
+                active.choices.childNodes[active.selected.length-1].innerText= ([].indexOf.call(e.target.parentElement.childNodes,e.target) -1)/2+1;
+                if (active.selected.length === 6) {
+                    active.selected.forEach(a=>a.classList.remove("selected"));
+                    final.push(active);
+                    createActive();
+                }
+            }
+            if (choices.childNodes.length > 1 && active.selected.length == 0) {
+                document.querySelector("button").removeAttribute("disabled");
+            } else
+                document.querySelector("button").setAttribute("disabled",true);
+        });
+    </script>
+</body>
+</html>
