@@ -4,7 +4,7 @@ html, body, * {
 }
 
 .tryYourChance {
-    max-width: 800px;
+    max-width: 600px;
     margin: auto;
 }
 
@@ -21,10 +21,10 @@ html, body, * {
 }
 
 .numbers > div {
-    margin: 0.4rem;
-    border: 3px solid black;
-    width: 64px;
-    height: 64px;
+    margin: 0.2rem;
+    border: 2px solid black;
+    width: 48px;
+    height: 48px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,7 +35,7 @@ html, body, * {
 }
 .button {
     width: 100%;
-    margin-top: 16px;
+    margin-top: 10px;
     text-align: center;
 }
 button:disabled {
@@ -44,11 +44,11 @@ button:disabled {
     border: 1px solid gray;
 }
 button {
-    font-size: 32px;
+    font-size: 28px;
     background-color: rgb(10,255,10);
     border: 1px solid black;
     padding: 0.2em 1em;
-    border-radius: 32px;
+    border-radius: 28px;
     font-weight: 400;
     margin-right: auto;
 }
@@ -58,7 +58,7 @@ button {
 }
 
 .numbers div:after {
-    font-size: 32px;
+    font-size: 24px;
 }
 
 .numbers:not(.choice) div:after {
